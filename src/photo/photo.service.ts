@@ -1,5 +1,5 @@
-import { Injectable, Inject, BadRequestException } from '@nestjs/common';
-import { Repository, UpdateResult } from 'typeorm';
+import { Injectable, Inject } from '@nestjs/common';
+import { Repository } from 'typeorm';
 import { Photo } from './photo.entity';
 import { CreatePhotoDto } from './dto/photo.create.dto';
 import { UpdatePhotoDto } from './dto/photo.update.dto';
@@ -12,14 +12,17 @@ export class PhotoService {
     ) { }
 
     async findAll(): Promise<Photo[]> {
-        return this.photoRepository.find();
+        return await this.photoRepository.find();
     }
     async createOne(createPhotoDto: CreatePhotoDto): Promise<Photo> {
         const photo = this.photoRepository.create(createPhotoDto);
 
-        return this.photoRepository.save(photo);
+        return await this.photoRepository.save(photo);
     }
-    async updanteOne(id: number, updatePhotoDto: UpdatePhotoDto): Promise<UpdateResult> {
-        return this.photoRepository.update(Number(id), updatePhotoDto)
+    async updanteOne(id: number, updatePhotoDto: UpdatePhotoDto) {
+        return await this.photoRepository.update(Number(id), updatePhotoDto)
+    }
+    async deleteOne(id: number) {
+        return this.photoRepository.delete(id)
     }
 }
