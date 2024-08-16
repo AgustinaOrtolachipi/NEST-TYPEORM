@@ -3,11 +3,16 @@ import { DatabaseModule } from '../database/database.module';
 import { photoProviders } from './photo.providers';
 import { PhotoService } from './photo.service';
 import { PhotoController } from './photo.controller';
+import { AuthorModule } from '@/author/author.module';
 
 // Define un módulo para gestionar la entidad Photo
 @Module({
     // Importa el DatabaseModule para tener acceso a los proveedores de la base de datos
-    imports: [DatabaseModule],
+    imports: [
+        DatabaseModule,
+        AuthorModule// Importa AuthorModule para usar sus proveedores
+
+    ],
     controllers: [PhotoController],
 
     // Registra los proveedores específicos de Photo y el servicio PhotoService
