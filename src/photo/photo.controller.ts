@@ -2,13 +2,14 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from 
 import { PhotoService } from './photo.service';
 import { CreatePhotoDto } from './dto/photo.create.dto';
 import { UpdatePhotoDto } from './dto/photo.update.dto';
+import { Photo } from './entities/photo.entity';
 
 @Controller("/photo")
 export class PhotoController {
     constructor(private readonly photoService: PhotoService) { }
 
     @Get()
-    getAll() {
+    getAll(): Promise<Photo[]> {
         return this.photoService.findAll();
     }
     @Post()

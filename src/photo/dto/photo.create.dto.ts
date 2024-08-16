@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsBoolean, Length, IsOptional } from 'class-validator';
+import { IsString, IsInt, IsBoolean, Length } from 'class-validator';
 
 export class CreatePhotoDto {
     @IsString()
@@ -16,4 +16,8 @@ export class CreatePhotoDto {
 
     @IsBoolean()
     isPublished: boolean;
+
+    @IsInt()
+    authorId: number;
+
 }
