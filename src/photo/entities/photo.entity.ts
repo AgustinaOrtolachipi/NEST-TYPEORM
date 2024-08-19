@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Author } from '@/author/entities/author.entity';
 
 // El decorador @Entity indica que esta clase representa una entidad en la base de datos
-@Entity()
+@Entity('photos')
 export class Photo {
     // Define la columna 'id' como la clave primaria generada automáticamente
     @PrimaryGeneratedColumn()

@@ -34,7 +34,7 @@ export class PhotoService {
 
         return await this.photoRepository.save(photo);
     }
-    async updanteOne(id: number, updatePhotoDto: UpdatePhotoDto) {
+    async updateOne(id: number, updatePhotoDto: UpdatePhotoDto) {
         const photo = await this.photoRepository.findOneBy({ id });
         if (!photo) {
             throw new NotFoundException(`Photo with id ${id} not found`);

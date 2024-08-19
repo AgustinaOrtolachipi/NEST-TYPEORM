@@ -4,7 +4,7 @@ import { CreatePhotoDto } from './dto/photo.create.dto';
 import { UpdatePhotoDto } from './dto/photo.update.dto';
 import { Photo } from './entities/photo.entity';
 
-@Controller("/photo")
+@Controller("/photos")
 export class PhotoController {
     constructor(private readonly photoService: PhotoService) { }
 
@@ -22,7 +22,7 @@ export class PhotoController {
         @Body() updatePhotoDto: UpdatePhotoDto
 
     ) {
-        return this.photoService.updanteOne(id, updatePhotoDto)
+        return this.photoService.updateOne(id, updatePhotoDto)
     }
 
     @Delete("/:id")

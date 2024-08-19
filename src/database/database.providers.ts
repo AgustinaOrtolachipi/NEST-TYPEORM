@@ -23,7 +23,7 @@ export const databaseProviders = [
             });
 
             // Inicializa la conexión al DataSource y devuelve la instancia inicializada
-            return dataSource.initialize();
+            return dataSource.initialize()
         },
     },
 ];

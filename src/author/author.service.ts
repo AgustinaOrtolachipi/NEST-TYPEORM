@@ -2,6 +2,7 @@ import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Author } from './entities/author.entity';
 import { CreateAuthorDto } from './dto/author.create.dto';
+import { UpdateAuthorDto } from './dto/author.update.dto';
 
 @Injectable()
 export class AuthorService {
@@ -21,11 +22,24 @@ export class AuthorService {
     return this.authorRepository.save(author);
   }
 
+  //modificar un autor
+  async updateOne(id: number, updateAuthorDto: UpdateAuthorDto): Promise<Author> {
+    const author = await this.authorRepository.preload({
+      id: id,
+      ...updateAuthorDto
+    });
+    if (!author) {
+      throw new NotFoundException(`Author with id ${id} not found`);
+    }
+    return await this.authorRepository.save(author);
+  }
+
   // Método para obtener un autor con todas sus fotos
   async findAuthorWithPhotos(authorId: number): Promise<Author> {
     const author = await this.authorRepository.findOne({
       where: { id: authorId },
       relations: ['photos'], // Incluye las fotos relacionadas
+
     });
 
     if (!author) {

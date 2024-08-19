@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Photo } from '@/photo/entities/photo.entity';
 
 //Define la entidad Author, que corresponde a la tabla 'author' en la base de datos
-@Entity()
+@Entity('authors')
 export class Author {
     @PrimaryGeneratedColumn()
     id: number;
